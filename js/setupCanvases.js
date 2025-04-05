@@ -5,7 +5,7 @@ function setupCanvases() {
     
 
 
-    console.log("window loaded");
+    // console.log("window loaded");
 
 
     

@@ -1,6 +1,6 @@
 function handleResize() {
 
-    console.log("resize");
+    // console.log("resize");
 
     // window_innerWidth = window.innerWidth;
     // window_innerHeight = window.innerHeight;

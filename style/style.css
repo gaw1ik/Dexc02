@@ -35,7 +35,20 @@ html, body {
     width:100vw;
     /* background-color: hsl(0, 0%, 90%, 1.0); */
     overflow:hidden;
+    flex-direction: column;
+    align-content: flex-start;
+}
 
+#tabs-navbar {
+    display:flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    /* padding-left:2vw; */
+    width: 100%;
 }
 
 #container01 {
@@ -43,8 +56,83 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: left;
-    padding-left:2vw;
+    /* padding-bottom: 2vh; */
 }
+#container02 {
+    display:flex;
+
+    flex-direction: row-reverse;
+    justify-content: center;
+    align-items: left;
+    padding-bottom: 2vh;
+}
+
+#wallet {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    position:fixed;
+    width:30rem;
+    height:30rem;
+    border:1px solid gray;
+    border-radius:2rem;
+    background-color:black;
+}
+
+.tabs-navbar-left {
+    display:flex;
+
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2vh;
+    width: 100%;
+}
+.tabs-navbar-right {
+    display:flex;
+    /* position: fixed;
+    top: 0;
+    left: 0; */
+    justify-content: flex-end;
+    padding: 2vh;
+    width: 100%;
+}
+
+.tabs-button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: hsl(0,0%,00%); */
+    padding: 0.5vh 1vh;
+    cursor:pointer;
+    border-radius: 1vh;
+    border: solid 1px gray;
+    font-size: 2.0vh;
+    margin: 1rem;
+    /* align-self: self-end; */
+    justify-self: flex-end;
+} 
+
+.positions-navbar {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 2vh;
+}
+
+.positions-button {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    background-color: hsl(0deg 0% 0%);
+    padding: 0.2vh 0.5vh;
+    cursor:pointer;
+    border-radius: 0.3rem;
+    border: solid 1px gray;
+    font-size: 1.9vh;
+} 
+
 
 
 #tickerText{
@@ -79,8 +167,10 @@ html, body {
     /* left: 0; */
     /* top: 0; */
     /* z-index: 0; */
-    width:60vw;
-    height:45vh;
+    width: 80vh;
+    height: 35vh;
+    /* padding: 3vh; */
+    /* border: 0.1px solid gray; */
 }
 
 
@@ -95,6 +185,17 @@ h1 {
     font-style: normal;
     /* font-size: min(12vw,100px); */
     font-size:var(--h1Size);
+    color:var(--text-color-h1);
+    user-select:none;
+    margin:0;
+}
+
+h2 {
+    text-align: center;
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-weight: 400;
+    font-style: normal;
+    /* font-size:var(--h1Size); */
     color:var(--text-color-h1);
     user-select:none;
     margin:0;

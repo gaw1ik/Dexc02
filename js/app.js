@@ -33,7 +33,7 @@ async function silenceTrick() {
     el.src = 'silence.mp3'; // media file with tiny bit of silence
     el.volume = 0.2;
     el.play();
-    console.log("silence playing")
+    // console.log("silence playing")
 }
 
 
@@ -64,7 +64,7 @@ async function playSound() {
     // document.body.removeEventListener('click', playSound);
 
     currentMuteState = 1 - currentMuteState; 
-    console.log("currentMuteState",currentMuteState);
+    // console.log("currentMuteState",currentMuteState);
     gainNode.gain.setValueAtTime(currentMuteState, context.currentTime);
     // drawToggle(muteControl,currentMuteState,0);
 
@@ -242,10 +242,22 @@ async function setup() {
 
     //     });
     // }
-    
-    
-    playSong();
 
+    ///////// INITIAL PARAMETER SETTING
+
+    
+    // percentTriggerHigh = 5;
+    // percentTriggerLow = -5;
+
+    vizMin = 75;
+    vizMax = 125;
+    
+    MS0 = Date.now();
+    TICKERCOUNT = 0;
+
+    startSong();
+
+    
     setInterval(drawVisualizer,34);
 
 
@@ -253,6 +265,13 @@ async function setup() {
 
 }
 
+
+document.getElementById("lounge-tabs-button").addEventListener("click",updateSongForSiteArea);
+document.getElementById("scanner-tabs-button").addEventListener("click",updateSongForSiteArea);
+document.getElementById("wallet-tabs-button").addEventListener("click",updateSongForSiteArea);
+document.getElementById("positions-button-01").addEventListener("click",updateSongForSiteArea);
+document.getElementById("positions-button-02").addEventListener("click",updateSongForSiteArea);
+document.getElementById("positions-button-03").addEventListener("click",updateSongForSiteArea);
 
 
 

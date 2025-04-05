@@ -19,19 +19,39 @@
 
 <body>
 
+
+
     <div id="siteContainer">
 
-
-
+        <!-- <div id="wallet">
+            <div>1300 JMP - $238.84</div>
+            <div>120 WLK - $1348.94</div>
+            <div>3.65 SIN - $45.65</div>
+        </div> -->
 
         <div id="container01">
 
-            <!-- <div> -->
+            <div id="container02">
+
+                <div class="positions-navbar">
+                    <div class="positions-button" id="positions-button-01">
+                        <h2>position-01 (JUMP)</h2>
+                    </div>
+                    <div class="positions-button" id="positions-button-02">
+                        <h2>position-02 (WALK)</h2>
+                    </div>                
+                    <div class="positions-button" id="positions-button-03">
+                        <h2>position-03 (SINE)</h2>
+                    </div>
+                </div>
+
                 <canvas id="canvasViz01"></canvas>
-            <!-- </div> -->
+
+            </div>
+
 
             <!-- <div id="tickerHigh">0.000%</div> -->
-            <div id="tickerText">SHTUSD $1.000 + 0.000%</div>
+            <div id="tickerText">WLKUSD $100.00 + 0.000%</div>
             <!-- <div id="tickerLow">0.000%</div> -->
 
             <div id="countText">0.0.00</div>
@@ -40,20 +60,39 @@
 
         </div>
 
-
-
-
-        <div id="versionNumber">1.02a</div>
-
-
     </div>
+
+    <div id="tabs-navbar">
+
+        <div class="tabs-navbar-left">
+            <div class="tabs-button" id="lounge-tabs-button">
+                <h2>LOUNGE</h2>
+            </div>
+            <div class="tabs-button" id="scanner-tabs-button">
+                <h2>SCANNER</h2>
+            </div>      
+        </div>
+        <div class="tabs-navbar-right">
+            <div class="tabs-button" id="wallet-tabs-button">
+                <h2>WALLET</h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="versionNumber">1.03a</div>
+
+    <script type="text/javascript" src="js/playNoteFuncs.js"></script>
     <script type="text/javascript" src="js/basicShapeFuncs.js"></script>
 
     <script type="text/javascript" src="js/playSong.js"></script>
+    <script type="text/javascript" src="js/startSong.js"></script>
+
     <script type="text/javascript" src="js/updateTicker.js"></script>
-    <script type="text/javascript" src="js/playInstrumentFuncs01.js"></script>
-    <!-- <script type="text/javascript" src="js/drawKnob01.js"></script> -->
-        <!-- <script type="text/javascript" src="js/drawToggle01.js"></script> -->
+    <script type="text/javascript" src="js/playInstruments_Wallet.js"></script>
+    <script type="text/javascript" src="js/playInstruments_Scanner.js"></script>
+    <script type="text/javascript" src="js/playInstruments_Lounge.js"></script>
+    <script type="text/javascript" src="js/playInstruments_Position.js"></script>
+
     <script type="text/javascript" src="js/drawVisualizer01.js"></script>
     <script type="text/javascript" src="js/assignParamFuncs01.js"></script>
     <script type="text/javascript" src="js/handleResize.js"></script>

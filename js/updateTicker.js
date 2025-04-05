@@ -1,97 +1,134 @@
+
+
+
+
+
 function updateTicker() {
 
-    
 
-    // if(Count%F==0) {
-    if(deltaType=='randomwalk') {
-        CoinDelta = getRandomFloat(-1,1)*0.03;
-    } else if (deltaType=='up') {
-        CoinDelta =  0.01;
-    } else if (deltaType=='down') {
-        CoinDelta = -0.01;
-    } else if (deltaType=='stay') {
-        CoinDelta = 0;
+    CoinValue = updateCoinValues();
+
+            //// coin 0 (JMPUSD)
+            var i = 0;
+            var CoinDelta2Prev = CoinDelta[i];
+            CoinDelta[i] = CoinValue[i] - CoinDelta2Prev;
+            deltaFrom0[i] = (CoinValue[i]-CoinValue0[i])/CoinValue0[i];
+            percentFrom0[i] = deltaFrom0[i]*100;
+            percentFrom0Abs[i] = Math.abs(percentFrom0[2]);
+        
+            //// coin 1 (WLKUSD)
+            var i = 1;
+            CoinValue[i] = CoinValue[i] + CoinDelta[i];
+            deltaFrom0[i] = (CoinValue[i]-CoinValue0[i])/CoinValue0[i];
+            percentFrom0[i] = deltaFrom0[i]*100;
+            percentFrom0Abs[i] = Math.abs(percentFrom0[i]);
+        
+            //// coin 2 (SINUSD)
+            var i = 2;
+            var CoinDelta2Prev = CoinDelta[i];
+            CoinDelta[i] = CoinValue[i] - CoinDelta2Prev;
+            deltaFrom0[i] = (CoinValue[i]-CoinValue0[i])/CoinValue0[i];
+            percentFrom0[i] = deltaFrom0[i]*100;
+            percentFrom0Abs[i] = Math.abs(percentFrom0[i]);
+
+
+    // update history array
+    CoinValueHistory[0].push(CoinValue[0]);
+    CoinValueHistory[1].push(CoinValue[1]);
+    CoinValueHistory[2].push(CoinValue[2]);
+    CoinValueHistory[0] = CoinValueHistory[0].slice(1);
+    CoinValueHistory[1] = CoinValueHistory[1].slice(1);
+    CoinValueHistory[2] = CoinValueHistory[2].slice(1);
+
+
+
+
+    for(let i=0; i<3; i++) {
+
+        if(CoinDelta[i]>0) {
+            dir = 1;
+        } else if(CoinDelta[i]<0) {
+            dir = -1;
+        } else {
+            dir = 0;
+        }
+
+        dir_stream[i] = dir_stream[i].slice(1);
+        dir_stream[i].push(dir);
+
     }
 
 
-        CoinValue = CoinValue + CoinDelta; 
-        // tickerText.innerText = 'SHTUSD $' + CoinValue.toFixed(3);
-    // }
-
-    // if(CoinDelta>0) {
-    //     tickerText.style.color = 'hsl(130,50%,50%)';
-    // } else if(CoinDelta<0) {
-    //     tickerText.style.color = 'hsl(0,50%,50%)';
-    // } else {
-    //     tickerText.style.color = 'hsl(0,0%,50%)';
-    // }
-
-
-
-    deltaFrom0 = (CoinValue-CoinValue0)/CoinValue0;
-
-
-    percentFrom0 = deltaFrom0*100;
-    percentFrom0Abs = Math.abs(percentFrom0);
-
-    // if ( deltaFrom0>deltaTrigger01 ) {
-    //     tickerText.innerText = 'BTCUSD $' + CoinValue.toFixed(1) + " " + percentFrom0.toFixed(2) + "%";
-    // } else if (deltaFrom0<-deltaTrigger01) {
-    //     tickerText.innerText = 'BTCUSD $' + CoinValue.toFixed(1) + " " + percentFrom0.toFixed(2) + "%";
-    // } else {
-    //     //
-    // }
-
-    deltaFrom0_MA = deltaFrom0_MA.slice(1);
-    deltaFrom0_MA.push(deltaFrom0);
-    // console.log("deltaFrom0_MA",deltaFrom0_MA);
-    averageDelta = average(deltaFrom0_MA);
-    averagePercentDelta = averageDelta*100;
-    averagePercentDeltaAbs = Math.abs(averagePercentDelta);
-
-    CoinValue_MA = CoinValue_MA.slice(1);
-    CoinValue_MA.push(CoinValue);
-    // console.log("deltaFrom0_MA",deltaFrom0_MA);
-    average_CoinValue = average(CoinValue_MA);
-
-
-    // console.log("averageDelta",averageDelta);
-
-    if(percentFrom0<percentFrom0_previous) {
+    if(percentFrom0[activeCoinInd]<percentFrom0_previous[activeCoinInd]) {
         tickerText.style.color = 'hsl(0,50%,50%)';
-    } else if (percentFrom0>percentFrom0_previous) {
+    } else if (percentFrom0[activeCoinInd]>percentFrom0_previous[activeCoinInd]) {
         tickerText.style.color = 'hsl(130,50%,50%)';
     } else {
         tickerText.style.color = 'hsl(130,0%,50%)';
     }
 
-    if(percentFrom0<0) {
-        tickerText.innerText = 'SHTUSD $' + CoinValue.toFixed(2) + " - " + percentFrom0Abs.toFixed(3) + "%";
+    if(activeCoinInd==0) {
+        CoinName = "JMPUSD";
+    }
+    if(activeCoinInd==1) {
+        CoinName = "WLKUSD";
+    }
+    if(activeCoinInd==2) {
+        CoinName = "SINUSD";
+    }
+
+    if(percentFrom0[activeCoinInd]<0) {
+        tickerText.innerText = CoinName + ' $' + CoinValue[activeCoinInd].toFixed(2) + " - " + percentFrom0Abs[activeCoinInd].toFixed(3) + "%";
     } else {
-        tickerText.innerText = 'SHTUSD $' + CoinValue.toFixed(2) + " + " + percentFrom0Abs.toFixed(3) + "%";
+        tickerText.innerText = CoinName + ' $' + CoinValue[activeCoinInd].toFixed(2) + " + " + percentFrom0Abs[activeCoinInd].toFixed(3) + "%";
     }
 
 
-    // tickerHigh.innerText = percentTriggerHigh.toFixed(3) + "%";
-    // tickerLow.innerText = percentTriggerLow.toFixed(3) + "%";
+
+    for(let i=0; i<3; i++) {
+
+        percentFrom0_previous[i] = percentFrom0[i];
+
+    }
 
 
-
-    // if ( deltaFrom0>deltaTrigger01 ) {
-    //     CoinValue0 = CoinValue; // reset
-    //     // degnew = degnew + 1;
-    //     playUp(deltaFrom0);
-    // } else if (deltaFrom0<-deltaTrigger01) {
-    //     CoinValue0 = CoinValue; // reset
-    //     // degnew = degnew - 1;
-    //     playDown(deltaFrom0);
-    // } else {
-    //     //
-    // }
-
-    // CoinValue0 = average_CoinValue;
-
-    percentFrom0_previous = percentFrom0;
 
 
 }
+
+
+
+
+function updateCoinValues() {
+
+        TICKERCOUNT = TICKERCOUNT + 1;
+
+        //// coin 0 (JMPUSD)
+        var i = 0;
+        if(TICKERCOUNT%4==0) {
+            CoinValue[i] = CoinValue0[i] + getRandomFloat(-1,1)*20;
+        } else {
+            CoinValue[i] = CoinValue[i] + getRandomFloat(-1,1)*3;
+        }
+
+    
+        //// coin 1 (WLKUSD)
+        var i = 1;
+        CoinDelta[i] = getRandomFloat(-1,1)*1;
+        CoinValue[i] = CoinValue[i] + CoinDelta[i];
+        if(CoinValue[i]>vizMax) {
+            CoinValue[i] = vizMax;
+        } else if (CoinValue[i]<vizMin) {
+            CoinValue[i] = vizMin;
+        }
+
+    
+        //// coin 2 (SINUSD)
+        var i = 2;
+        let stride = 64000;
+        CoinValue[i] = CoinValue0[i] + Math.sin( ((Date.now()-MS0)%stride / stride)*twoPI ) * 20;
+
+
+        return CoinValue;
+}
+
