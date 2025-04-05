@@ -1,0 +1,157 @@
+:root {
+
+    --canvasHeight:28vw;
+    --h1Size: calc(var(--canvasHeight) * 0.67);
+    --h3Size: calc(var(--h1Size) * 0.15);
+    --h4Size: calc(var(--h1Size) * 0.15);
+
+
+}
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    /* font-family: "Alumni Sans Pinstripe", serif; */
+    font-family: monospace;
+
+    overflow:hidden;
+    color:gray;
+    background-color: hsl(0,0%,6%);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+#siteContainer {
+    display:flex;
+    position:fixed;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+    width:100vw;
+    /* background-color: hsl(0, 0%, 90%, 1.0); */
+    overflow:hidden;
+
+}
+
+#container01 {
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+    padding-left:2vw;
+}
+
+
+#tickerText{
+    font-size:6vh;
+    text-align:left;
+    /* width:105vh; */
+}
+
+#tickerHigh{
+    font-size:3vh;
+    text-align:right;
+}
+#tickerLow{
+    font-size:3vh;
+    text-align:right;
+}
+
+#countText{
+    font-size:4vh;
+    text-align:left;
+    /* width:105vh; */
+}
+
+#musicLevelText{
+    font-size:3vh;
+    text-align:left;
+    /* width:105vh; */
+}
+
+#canvasViz01 {
+    /* position: fixed; */
+    /* left: 0; */
+    /* top: 0; */
+    /* z-index: 0; */
+    width:60vw;
+    height:45vh;
+}
+
+
+
+
+
+
+h1 {
+    text-align: center;
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-weight: 400;
+    font-style: normal;
+    /* font-size: min(12vw,100px); */
+    font-size:var(--h1Size);
+    color:var(--text-color-h1);
+    user-select:none;
+    margin:0;
+}
+
+
+#versionNumber {
+    font-size: 1rem;
+    position: fixed;
+    left: 1rem;
+    bottom: 1rem;
+    user-select:none;
+    /* margin:0.3rem; */
+    opacity:0.3;
+}
+
+
+
+h3 {
+    /* position: absolute; */
+    /* bottom:0;
+    left:40%; */
+
+    text-align: center;
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size:var(--h3Size);
+    margin:0;
+    user-select:none;
+}
+
+h4 {
+    text-align: center;
+    font-family: "Alumni Sans Pinstripe", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size:var(--h4Size);
+    opacity:50%;
+    /* font-size: min(1vw,10px); */
+    margin:0 0 0 0;
+    user-select:none;
+    letter-spacing: 3px;
+}
+
+
+
+@media only screen and (max-aspect-ratio: 0.99) {
+
+
+    #tickerText{
+        font-size:5vw;
+
+    }
+    #countText{
+        font-size:4vw;
+
+    }
+
+}
